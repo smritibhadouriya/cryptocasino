@@ -33,7 +33,7 @@ const Reviewpage = () => {
             {ReviewData.map((review) => (
               <div
                 key={review.id}
-                className="flex flex-col md:flex-row  bg-opacity-90 rounded-xl shadow-lg p-6 hover:shadow-2xl transition-shadow duration-300"
+                className="flex flex-col md:flex-row bg-gray-900 bg-opacity-90 rounded-xl shadow-lg p-6 hover:shadow-2xl transition-shadow duration-300"
               >
                 {/* Left Side: Casino Name, Image, Visit Button */}
                 <div className="md:w-1/4 flex flex-col items-start space-y-4">
