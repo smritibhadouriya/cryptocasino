@@ -70,7 +70,7 @@ import { Link } from 'react-router-dom';
           </div>
           <div
             id="reviewModal"
-            className={`fixed inset-0 bg-black bg-opacity-50 ${isModalOpen ? 'flex' : 'hidden'} z-50 items-center justify-center`}
+            className={`fixed inset-0  bg-opacity-50 ${isModalOpen ? 'flex' : 'hidden'} z-50 items-center justify-center`}
             onClick={handleModalClick}
           >
             <div className="card rounded-xl p-8 max-w-md w-full mx-4 bg-gray-800">
