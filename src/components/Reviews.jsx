@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ReviewData } from '../data/ReviewData';
+import { Link } from 'react-router-dom';
     const Reviews = () => {
       const [isModalOpen, setIsModalOpen] = useState(false);
       const [rating, setRating] = useState(0);
@@ -32,7 +33,7 @@ import { ReviewData } from '../data/ReviewData';
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center mb-12">
               <h2 className="text-3xl font-bold text-center flex-1 text-yellow-400">What Players Are Saying</h2>
-              <a href="/reviews" className="text-yellow-400 hover:text-yellow-300 font-semibold">See More</a>
+              <Link to="/reviews" className="text-yellow-400 hover:text-yellow-300 font-semibold">See More</Link>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
          {ReviewD.map((Review) => {
