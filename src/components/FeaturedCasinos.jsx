@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { casinoData } from '../data/CasinoData';
+import { FaRegStar, FaStar, FaStarHalf, FaStarHalfAlt } from 'react-icons/fa';
 
 const FeaturedCasinos = () => {
   const navigate = useNavigate();
@@ -8,6 +9,20 @@ const FeaturedCasinos = () => {
   const featuredCasinos = casinoData
     .filter((casino) => casino.featured)
     .slice(0, 3);
+
+    const StarRating = ({ rating }) => {
+      const stars = [];
+      for (let i = 1; i <= 5; i++) {
+        if (rating >= i) {
+          stars.push(<FaStar key={i} className="text-yellow-400 text-2xl" />);
+        } else if (rating >= i - 0.5) {
+          stars.push(<FaStarHalfAlt key={i} className="text-yellow-400 text-2xl" />);
+        } else {
+          stars.push(<FaRegStar key={i} className="text-yellow-400 text-2xl" />);
+        }
+      }
+      return <div className="flex">{stars}</div>;
+    };
 
   return (
     <section className="py-16">
@@ -37,8 +52,10 @@ const FeaturedCasinos = () => {
         <div className=" mb-2 text-gray-300">
           {`${casino.bonus} ${casino.bonusDesc}`}
         </div>
-      <div className="star-rating text-yellow-500"> {casino.rating} ({(casino.rating.length * 0.9).toFixed(1)}/5) </div>
-       <div className="reviews mb-2 text-gray-400">{casino.reviews} Reviews</div>
+       <div className="star-rating mb-2 flex gap-2">
+                    <StarRating rating={parseFloat(casino.rating)} />
+                    <span className="text-gray-300 text-md mt-1">{parseFloat(casino.rating).toFixed(1)}/5</span>
+                  </div>
       </div>
     </div>
 
