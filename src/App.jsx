@@ -8,6 +8,7 @@ const Guide = lazy(()=> import('./pages/Guide'))
 const GuideDetail = lazy(()=> import('./pages/GuideDetail'))
 const CasinoDetail = lazy(()=> import('./pages/CasinoDetail'))
 const GamesPage = lazy(()=> import('./pages/GamesPage'))
+const Reviewpage =lazy(()=>import('./pages/Reviewpage'))
 function App() {
   return (
       <BrowserRouter>
@@ -20,6 +21,7 @@ function App() {
                  <Route path="/guide/:id" element={<GuideDetail />} />
                  <Route path="/casino/:id" element={<CasinoDetail />} />
                 <Route path="/games/:gameType" element={<GamesPage />} />
+                 <Route path="/reviews" element={<Reviewpage />} />
               </Routes>
               <Footer />
             </Suspense>

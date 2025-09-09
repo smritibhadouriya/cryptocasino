@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const guidesData = [
   {
@@ -156,6 +156,7 @@ const guidesData = [
 
 const Guides = () => {
   const topGuides = guidesData.filter((guide) => guide.tag === 'top').slice(0, 4);
+  const navigate= useNavigate();
 
   return (
  <section id="guides" className="py-16 bg-gray-900 bg-opacity-40">
@@ -164,7 +165,7 @@ const Guides = () => {
       <div className="flex-1 text-center">
         <h2 className="text-3xl font-bold text-yellow-400">Guides & Learning Hub</h2>
       </div>
-      <button onClick={() => navigate('/guide')} className="text-yellow-400 hover:text-yellow-300 font-semibold">
+      <button onClick={() => navigate('/guide')} className="text-yellow-400 hover:text-yellow-300 font-semibold cursor-pointer">
         See More
       </button>
     </div>
