@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /scripts/
 
-Sitemap: https://https://cryptocasin.netlify.app//sitemap.xml
+Sitemap: https://thecasinopapa.com//sitemap.xml

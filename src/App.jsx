@@ -16,7 +16,11 @@ function App() {
   return (
       <BrowserRouter>
           <div className="min-h-screen bg-gradient-to-r from-[#0A0F2B] via-[#1A2A44] to-[#0A0F2B] text-gray-200">
-            <Suspense fallback={<div className="flex justify-center items-center min-h-screen">Loading...</div>}>
+          <Suspense fallback={
+  <div className="flex justify-center items-center min-h-screen">
+    <div className="w-8 h-8 border-4 border-t-4 border-gray-200 border-t-yellow-500 rounded-full animate-spin"></div>
+  </div>
+}>
               <Navbar />
               <Routes>
                 <Route path="/" element={<Main />} />
