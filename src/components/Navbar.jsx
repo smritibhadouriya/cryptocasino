@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const [isOpen, setIsOpen] = useState(false);
 
   const navLinks = [
     { href: '#home', label: 'Home' },
@@ -26,10 +27,8 @@ const Navbar = () => {
     }
   };
 
-  // Handle scroll after navigation
   useEffect(() => {
     if (location.state?.sectionId) {
-      // Delay scroll to ensure DOM is ready after navigation
       setTimeout(() => scrollToSection(location.state.sectionId), 0);
     }
   }, [location]);
@@ -37,12 +36,11 @@ const Navbar = () => {
   const handleNavClick = (e, href) => {
     e.preventDefault();
     const sectionId = href.replace('#', '');
+    setIsOpen(false); // Close dropdown on link click
 
     if (location.pathname === '/') {
-      // On homepage, scroll directly
       scrollToSection(sectionId);
     } else {
-      // On other pages, navigate to homepage with sectionId in state
       navigate('/', { state: { sectionId } });
     }
   };
@@ -69,7 +67,35 @@ const Navbar = () => {
               </a>
             ))}
           </div>
+          <div className="md:hidden flex items-center">
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="text-yellow-400 hover:text-yellow-300 focus:outline-none"
+              aria-label="Toggle navigation menu"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={isOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16m-7 6h7"} />
+              </svg>
+            </button>
+          </div>
         </div>
+        {isOpen && (
+          <div className="md:hidden">
+            <div className="px-2 pt-2 pb-3 space-y-1 bg-gray-900 border-t border-yellow-500/30">
+              {navLinks.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={(e) => handleNavClick(e, link.href)}
+                  className="nav-link block px-3 py-2 text-base font-medium"
+                  aria-label="navbar links"
+                >
+                  {link.label}
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </nav>
   );
