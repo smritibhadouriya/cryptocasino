@@ -54,7 +54,7 @@ const Navbar = () => {
               CasinoPapa
             </div>
           </div>
-          <div className="hidden md:flex space-x-8">
+          <div className="hidden lg:flex space-x-8">
             {navLinks.map((link) => (
               <a
                 key={link.href}
@@ -67,7 +67,7 @@ const Navbar = () => {
               </a>
             ))}
           </div>
-          <div className="md:hidden flex items-center">
+          <div className="lg:hidden flex items-center">
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="text-yellow-400 hover:text-yellow-300 focus:outline-none"
@@ -80,7 +80,7 @@ const Navbar = () => {
           </div>
         </div>
         {isOpen && (
-          <div className="md:hidden">
+          <div className="lg:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 bg-gray-900 border-t border-yellow-500/30">
               {navLinks.map((link) => (
                 <a
