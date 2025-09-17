@@ -12,6 +12,7 @@ const CasinoComparison = lazy(() => import('../components/CasinoComparison'));
 const GameDemo = lazy(() => import('../components/GameDemo'));
 const Quickfilter = lazy(() => import('../components/Quickfilter'));
 import {casinoData} from '../data/CasinoData.js'
+import SeoHelmet from '../components/seo/SeoHelmet.jsx';
 const mainpage = () => {
       // Handle hash-based scrolling on page load or hash change
   useEffect(() => {
@@ -50,6 +51,12 @@ const mainpage = () => {
       });
   return (
     <div>
+        <SeoHelmet
+    title='Casino Papa-HomePage'
+    description='Home page of the website. Show the things persent in website ,quicklinks for online games, casinos and guide for knowing more about casinos, addiction and online games '
+     keywords={["casino", "online gambling", `Casino review`, "casino games", "bonuses","online games","Best casino"]}
+  href={`https://www.thecasinopapa/`}
+    />
          <Header />
         <FeaturedCasinos />
        <Quickfilter onFilterChange={setActiveFilter} activeFilter={activeFilter} />

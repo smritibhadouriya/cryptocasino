@@ -166,7 +166,7 @@ const Guides = () => {
         <h2 className="text-3xl font-bold text-yellow-400">Guides & Learning Hub</h2>
       </div>
       <button onClick={() => navigate('/guide')} className="text-yellow-400 hover:text-yellow-300 font-semibold cursor-pointer">
-        See More
+       All guide
       </button>
     </div>
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -175,7 +175,10 @@ const Guides = () => {
           <div className="text-4xl mb-4">{guide.emoji}</div>
           <h3 className="text-lg font-semibold mb-2">{guide.heading}</h3>
           <p className="text-gray-200 mb-4">{guide.description}</p>
-          <Link className="text-yellow-400 hover:text-yellow-300 font-semibold" to={`/guide/${guide.id}`}>
+          <Link className="text-yellow-400 hover:text-yellow-300 font-semibold" to={`/guide/${guide.id}`}
+          aria-label="learn about your topic"
+          >
+
             Read More →
           </Link>
         </div>

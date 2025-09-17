@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 const Navbar = () => {
@@ -11,35 +11,39 @@ const Navbar = () => {
     { href: '#bonuses', label: 'Bonuses' },
     { href: '#games', label: 'Games' },
     { href: '#guides', label: 'Guides' },
-    { href: '#reviews', label: 'Reviews' }
+    { href: '#reviews', label: 'Reviews' },
   ];
 
-  const scrollToSection = (sectionId, isSamePage = true) => {
-    if (isSamePage) {
-      const element = document.getElementById(sectionId.replace('#', ''));
-      if (element) {
-        const navbarHeight = document.querySelector('nav').offsetHeight;
-        const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
-        window.scrollTo({
-          top: elementPosition - navbarHeight,
-          behavior: 'smooth'
-        });
-      }
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId.replace('#', ''));
+    if (element) {
+      const navbarHeight = document.querySelector('nav').offsetHeight || 0;
+      const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+      window.scrollTo({
+        top: elementPosition - navbarHeight,
+        behavior: 'smooth',
+      });
     }
   };
 
+  // Handle scroll after navigation
+  useEffect(() => {
+    if (location.state?.sectionId) {
+      // Delay scroll to ensure DOM is ready after navigation
+      setTimeout(() => scrollToSection(location.state.sectionId), 0);
+    }
+  }, [location]);
+
   const handleNavClick = (e, href) => {
     e.preventDefault();
-    const sectionId = href;
-    
+    const sectionId = href.replace('#', '');
+
     if (location.pathname === '/') {
-      // On homepage, use smooth scrolling
+      // On homepage, scroll directly
       scrollToSection(sectionId);
     } else {
-      // On other pages, navigate to homepage with section hash
-      navigate(`/${sectionId}`);
-      // Trigger scroll after navigation (use setTimeout to ensure DOM is ready)
-      setTimeout(() => scrollToSection(sectionId, false), 0);
+      // On other pages, navigate to homepage with sectionId in state
+      navigate('/', { state: { sectionId } });
     }
   };
 
@@ -49,7 +53,7 @@ const Navbar = () => {
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
             <div className="text-2xl font-bold text-yellow-400 cursor-pointer" onClick={() => navigate('/')}>
-              Crypto Casino
+              CasinoPapa
             </div>
           </div>
           <div className="hidden md:flex space-x-8">
@@ -59,6 +63,7 @@ const Navbar = () => {
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
                 className="nav-link"
+                aria-label="navbar links"
               >
                 {link.label}
               </a>

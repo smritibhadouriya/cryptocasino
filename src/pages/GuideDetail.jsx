@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
+import SeoHelmet from '../components/seo/SeoHelmet';
 
 const guidesData = [
   {
@@ -144,14 +145,19 @@ const GuideDetail = () => {
   const { id } = useParams();
   const guide = guidesData.find((g) => g.id === parseInt(id));
   const navigate =useNavigate();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []); // empty dependency array ensures it runs only once
 
   if (!guide) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-[#1A1A2E] via-[#16213E] to-[#1A1A2E] text-white flex items-center justify-center">
         <div className="text-center">
-          <h2 className="text-3xl font-bold text-yellow-400 mb-4">Guide Not Found</h2>
+          <h1 className="text-3xl font-bold text-yellow-400 mb-4">Guide Not Found</h1>
           <p className="text-gray-200 mb-6">Sorry, we couldn't find the guide you're looking for.</p>
-          <Link to="/guide" className="btn-primary inline-block px-6 py-3 rounded-lg">
+          <Link to="/guide" className="btn-primary inline-block px-6 py-3 rounded-lg"
+          aria-label="Learn more about the topics you loves about casinos and games"
+          >
             Back to Guides Hub
           </Link>
         </div>
@@ -161,6 +167,12 @@ const GuideDetail = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#1A1A2E] via-[#16213E] to-[#1A1A2E] text-white">
+        <SeoHelmet
+    title='Know more'
+    description='User can learn more about their select topics.'
+     keywords={["casino", "online gambling", `${guide.heading.toLowerCase()}`, "casino games", "bonuses","online games"]}
+  href={`https://www.thecasinopapa/guide/${id}`}
+    />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <button onClick={() => navigate(-1)} className="inline-flex items-center text-yellow-400 hover:text-yellow-300 mb-8">
           <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -174,7 +186,7 @@ const GuideDetail = () => {
           <div className="flex items-center space-x-4 mb-6">
             <span className="text-sm text-gray-400">Category: {guide.category}</span>
             <span className="text-sm text-gray-400">Read time: {guide.read_time} min</span>
-          </div>
+          </div>  
           <p className="text-gray-200 mb-6">{guide.description}</p>
           <div className="prose prose-invert text-gray-200">
             <p>

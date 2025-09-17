@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { FaRegStar, FaStar, FaStarHalfAlt, FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import { ReviewData } from '../data/ReviewData';
 import { casinoData } from '../data/CasinoData';
-// Assuming casinoData remains the same as provided
-
+import { Helmet } from 'react-helmet-async';
+import SeoHelmet from '../components/seo/SeoHelmet';
 
 const StarRating = ({ rating }) => {
   const stars = [];
@@ -23,6 +23,9 @@ const StarRating = ({ rating }) => {
 const CasinoDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const casino = casinoData.find((casino) => casino.id === parseInt(id));
   const otherCasinos = casinoData.filter((c) => c.id !== parseInt(id)).slice(0, 4);
@@ -84,14 +87,24 @@ const CasinoDetails = () => {
     }
   };
 
-  const handlePrevComments = () => {
+  const handlePrevComments = () => {n   
     if (currentCommentIndex > 0) {
       setCurrentCommentIndex(currentCommentIndex - commentsPerPage);
     }
   };
 
+  // Rating display logic for the main casino
+  const rating = parseFloat(casino.rating);
+  const displayRating = Number.isInteger(rating) ? `${rating}/5` : `${rating.toFixed(1)}/5`;
+
   return (
     <section className="py-16 bg-gray-900 min-h-screen text-gray-300">
+     <SeoHelmet
+  title={`${casino.name} - Casino Review & Ratings`}
+  description={`Full review of ${casino.name} including ratings, bonuses, games, and payment methods. Find the best casino for your needs.`}
+  keywords={["casino", "online gambling", `${casino.name.toLowerCase()}`, "casino review", "bonuses"]}
+  href={`https://www.thecasinopapa/casinos/${id}`}
+/>
       <div className="max-w-6xl mx-auto px-6 py-8">
         <button
           className="inline-flex items-center text-yellow-400 hover:text-yellow-300 mb-8"
@@ -128,7 +141,7 @@ const CasinoDetails = () => {
                 <div className="text-center">
                   <div className="star-rating mb-2 flex gap-2">
                     <StarRating rating={parseFloat(casino.rating)} />
-                    <span className="text-gray-300 text-md mt-1">{parseFloat(casino.rating).toFixed(1)}/5</span>
+                    <span className="text-gray-300 text-md mt-1">{displayRating}</span>
                   </div>
                 </div>
                 <span className="bg-yellow-400 text-gray-900 px-3 py-1 rounded-full text-sm font-medium">
@@ -141,7 +154,10 @@ const CasinoDetails = () => {
                 )}
               </div>
               <p className="text-gray-300 text-lg mb-4">{casino.description}</p>
-              <button className="bg-yellow-400 hover:bg-yellow-500 px-4 py-2 rounded-lg font-semibold text-lg text-gray-900 transition-all transform hover:scale-105">
+              <button
+                className="bg-yellow-400 hover:bg-yellow-500 px-4 py-2 rounded-lg font-semibold text-lg text-gray-900 transition-all transform hover:scale-105"
+                aria-label={`Visit ${casino.name}`}
+              >
                 Visit
               </button>
             </div>
@@ -304,7 +320,7 @@ const CasinoDetails = () => {
               <div className="text-center mb-4">
                 <div className="star-rating mb-2 flex justify-center gap-2">
                   <StarRating rating={parseFloat(casino.rating)} />
-                  <span className="text-gray-300 text-md mt-1">{parseFloat(casino.rating).toFixed(1)}/5</span>
+                  <span className="text-gray-300 text-md mt-1">{displayRating}</span>
                 </div>
               </div>
               <div className="space-y-4 mb-6">
@@ -316,7 +332,9 @@ const CasinoDetails = () => {
                     <div className="flex items-center gap-2 mb-2">
                       <span className="font-semibold text-white">{comment.userName}</span>
                       <StarRating rating={comment.rating} />
-                      <span className="text-gray-300 text-sm">{comment.rating.toFixed(1)}/5</span>
+                      <span className="text-gray-300 text-sm">
+                        {Number.isInteger(comment.rating) ? `${comment.rating}/5` : `${comment.rating.toFixed(1)}/5`}
+                      </span>
                     </div>
                     <p className="text-gray-300 text-sm">{comment.comment}</p>
                   </div>
@@ -363,31 +381,37 @@ const CasinoDetails = () => {
               Explore More Casinos
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-              {otherCasinos.map((otherCasino) => (
-                <div
-                  key={otherCasino.id}
-                  className="card p-6 text-center bg-gray-700 rounded-xl border border-gray-600 cursor-pointer hover:bg-gray-600 transition"
-                  onClick={() => navigate(`/casino/${otherCasino.id}`)}
-                >
-                  <h3 className="text-xl font-semibold mb-2 text-white">{otherCasino.name}</h3>
-                  <div className="bonus mb-4 text-yellow-400">
-                    {`${otherCasino.bonus} ${otherCasino.bonusDesc}`}
-                  </div>
-                  <div className="star-rating mb-4 flex justify-center gap-2 text-yellow-400">
-                    <StarRating rating={parseFloat(otherCasino.rating)} />
-                    <span>({parseFloat(otherCasino.rating).toFixed(1)}/5)</span>
-                  </div>
-                  <button
-                    className="w-full bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-gray-900 py-2 rounded-lg font-semibold transition-all transform hover:scale-105"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      navigate("/");
-                    }}
+              {otherCasinos.map((otherCasino) => {
+                const otherRating = parseFloat(otherCasino.rating);
+                const otherDisplayRating = Number.isInteger(otherRating)
+                  ? `${otherRating}/5`
+                  : `${otherRating.toFixed(1)}/5`;
+                return (
+                  <div
+                    key={otherCasino.id}
+                    className="card p-6 text-center bg-gray-700 rounded-xl border border-gray-600 cursor-pointer hover:bg-gray-600 transition"
+                    onClick={() => navigate(`/casino/${otherCasino.id}`)}
                   >
-                    Play Now
-                  </button>
-                </div>
-              ))}
+                    <h3 className="text-xl font-semibold mb-2 text-white">{otherCasino.name}</h3>
+                    <div className="bonus mb-4 text-yellow-400">
+                      {`${otherCasino.bonus} ${otherCasino.bonusDesc}`}
+                    </div>
+                    <div className="star-rating mb-4 flex justify-center gap-2 text-yellow-400">
+                      <StarRating rating={parseFloat(otherCasino.rating)} />
+                      <span>({otherDisplayRating})</span>
+                    </div>
+                    <button
+                      className="w-full bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-gray-900 py-2 rounded-lg font-semibold transition-all transform hover:scale-105"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        navigate("/");
+                      }}
+                    >
+                      Play Now
+                    </button>
+                  </div>
+                );
+              })}
             </div>
           </div>
         )}

@@ -9,6 +9,9 @@ const GuideDetail = lazy(()=> import('./pages/GuideDetail'))
 const CasinoDetail = lazy(()=> import('./pages/CasinoDetail'))
 const GamesPage = lazy(()=> import('./pages/GamesPage'))
 const Reviewpage =lazy(()=>import('./pages/Reviewpage'))
+const Terms =lazy(()=>import('./components/terms'))
+const Privacy =lazy(()=>import('./components/privacypolicy'))
+const Contact =lazy(()=>import('./components/contactus'))
 function App() {
   return (
       <BrowserRouter>
@@ -22,6 +25,9 @@ function App() {
                  <Route path="/casino/:id" element={<CasinoDetail />} />
                 <Route path="/games/:gameType" element={<GamesPage />} />
                  <Route path="/reviews" element={<Reviewpage />} />
+                 <Route path="/terms" element={<Terms />} />
+                 <Route path="/privacy" element={<Privacy/>} />
+                 <Route path="/contact" element={<Contact/>} />
               </Routes>
               <Footer />
             </Suspense>

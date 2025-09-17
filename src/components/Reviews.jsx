@@ -33,11 +33,11 @@ import { Link } from 'react-router-dom';
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center mb-12">
               <h2 className="text-3xl font-bold text-center flex-1 text-yellow-400">What Players Are Saying</h2>
-              <Link to="/reviews" className="text-yellow-400 hover:text-yellow-300 font-semibold">See More</Link>
+              <Link to="/reviews" className="text-yellow-400 hover:text-yellow-300 font-semibold" aria-label="See More Casino Reviews">All reviews</Link>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
          {ReviewD.map((Review) => {
-  const latestReview = Review.comments[0]; // Get the first (latest) review
+  const latestReview = Review.comments[0]; 
   return (
     <div
       key={Review.id}

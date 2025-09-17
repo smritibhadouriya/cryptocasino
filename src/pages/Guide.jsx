@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import SeoHelmet from '../components/seo/SeoHelmet';
 
 const guidesData = [
   {
@@ -144,9 +145,19 @@ const Guide = () => {
   const bonusGuides = guidesData.filter((guide) => guide.tag === 'bonus');
   const gameGuides = guidesData.filter((guide) => guide.tag === 'gameguide');
   const navigate=useNavigate();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []); // empty dependency array ensures it runs only once
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#1A1A2E] via-[#16213E] to-[#1A1A2E] text-white">
+   <SeoHelmet
+  title='Casino & Game Guides - Tips, Strategies, and Bonuses'
+  description='Explore top casino strategies, game guides, and bonus tips to improve your play and stay safe.'
+   keywords={["casino", "online gambling", `casino guide`, "casino games", "bonuses","online games"]}
+  href={`https://www.thecasinopapa/guide`}
+/>
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <h1 className="text-4xl md:text-5xl font-bold text-center mb-12 bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
           Guides Hub
@@ -169,6 +180,7 @@ const Guide = () => {
                 <p className="text-sm text-gray-400 mb-4">Read time: {guide.read_time} min</p>
                 <Link
                   to={`/guide/${guide.id}`}
+                  aria-label="Learn more about you favorite topic"
                   className="btn-primary w-full px-6 py-3 bg-yellow-400 text-gray-900 font-semibold rounded-lg hover:bg-yellow-300 transition-colors"
                 >
                   Read More
@@ -190,6 +202,7 @@ const Guide = () => {
                 <p className="text-xs text-gray-400 mb-4">Read time: {guide.read_time} min</p>
                 <Link
                   to={`/guide/${guide.id}`}
+                  aria-label="way to learn more about your favorite topic"
                   className="text-yellow-400 hover:text-yellow-300 font-semibold text-left"
                 >
                   Read More →
@@ -211,6 +224,7 @@ const Guide = () => {
                 <p className="text-sm text-gray-400 mb-4">Read time: {guide.read_time} min</p>
                 <Link
                   to={`/guide/${guide.id}`}
+                  aria-label="way to learn more about your selected topic"
                   className="btn-primary w-full px-6 py-3 bg-yellow-400 text-gray-900 font-semibold rounded-lg hover:bg-yellow-300 transition-colors"
                 >
                   Read Guide

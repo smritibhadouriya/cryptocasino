@@ -1,12 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ReviewData } from '../data/ReviewData';
 import { Link, useNavigate } from 'react-router-dom';
+import SeoHelmet from '../components/seo/SeoHelmet';
 
 const Reviewpage = () => {
   const navigate = useNavigate();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []); // empty dependency array ensures it runs only once
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#1A1A2E] via-[#16213E] to-[#1A1A2E] text-white">
+        <SeoHelmet
+    title='Review Casino'
+    description='Users can share their reviews and experiences to help others decide if a casino is good or not.'
+    keywords={["casino", "online gambling", "casino review", "casino games", "bonuses","online games"]}
+  href={`https://www.thecasinopapa/reviews`}
+
+    />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <h1 className="text-4xl md:text-5xl font-extrabold text-center mb-12 bg-gradient-to-r from-yellow-400 to-orange-500 bg-clip-text text-transparent">
           Reviews Hub
@@ -45,6 +56,7 @@ const Reviewpage = () => {
                   />
                   <Link
                     to={`/casino/${review.id}`}
+                    aria-label="Way to know more about your favorite casinos"
                     className="w-full md:w-auto px-6 py-3 bg-yellow-400 text-gray-900 font-semibold rounded-lg hover:bg-yellow-300 transition-colors duration-300 text-center"
                   >
                     Casino Detail

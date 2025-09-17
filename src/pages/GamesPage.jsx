@@ -1,9 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
+import SeoHelmet from '../components/seo/SeoHelmet';
 
     const GamesPage = () => {
       const { gameType } = useParams();
         const navigate =useNavigate();
+        useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []); // empty dependency array ensures it runs only once
       const gameData = {
         slots: {
           name: 'Slots',
@@ -71,14 +75,21 @@ import { useNavigate, useParams } from 'react-router-dom';
 
       return (
         <section className="py-16 bg-gray-900 min-h-screen">
+     <SeoHelmet
+  title={`${category.name} Games - Play Online`}
+  description={`Explore and play ${category.name} games online. Enjoy games from top providers and have fun while earning rewards.`}
+   keywords={["casino", "online gambling", `${category.name.toLowerCase()}`, "casino games", "bonuses","online games"]}
+  href={`https://www.thecasinopapa/games/${gameType}`}
+/>
+
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                  <button  className="inline-flex items-center text-yellow-400 hover:text-yellow-300 mb-8"  onClick={() => navigate(-1)}>
+                  <button  className="inline-flex items-center text-yellow-400 hover:text-yellow-300 mb-8"  onClick={() => navigate(-1)} aria-label="Go back">
           <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"></path>
           </svg>
           Back 
         </button>
-            <h2 className="text-3xl font-bold text-center mb-12 text-yellow-400">{category.name} Games</h2>
+            <h1 className="text-3xl font-bold text-center mb-12 text-yellow-400">{category.name} Games</h1>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
               {category.games.map((game) => (
                 <div
@@ -87,7 +98,7 @@ import { useNavigate, useParams } from 'react-router-dom';
                   onClick={() => playGame(game.name)}
                 >
                   <div className="w-full h-32 mb-4 rounded" style={{ backgroundColor: game.placeholderColor }}></div>
-                  <h3 className="font-semibold text-white">{game.name}</h3>
+                  <h2 className="font-semibold text-white">{game.name}</h2>
                   <p className="text-gray-400 text-sm">{game.provider}</p>
                 </div>
               ))}
