@@ -36,7 +36,7 @@ const FeaturedCasinos = () => {
               <div
                 key={casino.id}
                 className="card bg-gray-800 rounded-lg shadow-lg cursor-pointer hover:bg-gray-700 transition p-6 flex flex-col"
-                onClick={() => navigate(`/casino/${casino.id}`)}
+               
               >
                 {/* Top Row: Image + Details */}
                 <div className="flex flex-col md:flex-row w-full">
@@ -69,11 +69,14 @@ const FeaturedCasinos = () => {
                     aria-label="know more about casino"
                     to={`/casino/${casino.id}`}
                   >
-                    Details
+                  Casino Detail
                   </Link>
-                  <button className="flex-1 bg-gray-600 text-white py-2 rounded hover:bg-gray-700">
-                    Visit
-                  </button>
+            <button
+  className="flex-1 bg-gray-600 text-white font-semibold py-2 rounded text-center hover:bg-gray-700"
+  onClick={() => window.open(casino.visitlink, '_blank', 'noopener,noreferrer')}
+>
+  Visit casino
+</button>
                 </div>
               </div>
             );

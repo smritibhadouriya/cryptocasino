@@ -120,7 +120,7 @@ import { useNavigate } from 'react-router-dom';
           onClick={() => navigate(`/casino/${comparisonResult.casino1.id}`)}
           className="w-full bg-yellow-400 text-gray-900 px-4 py-2 rounded-lg hover:bg-yellow-500 transition duration-300"
         >
-          Visit
+        Casino Detail
         </button>
       </td>
       <td className="py-3 px-4">
@@ -128,7 +128,7 @@ import { useNavigate } from 'react-router-dom';
           onClick={() => navigate(`/casino/${comparisonResult.casino2.id}`)}
           className="w-full bg-yellow-400 text-gray-900 px-4 py-2 rounded-lg hover:bg-yellow-500 transition duration-300"
         >
-          Visit
+         Casino Detail
         </button>
       </td>
     </tr>

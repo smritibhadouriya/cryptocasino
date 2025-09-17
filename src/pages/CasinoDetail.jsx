@@ -3,7 +3,6 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { FaRegStar, FaStar, FaStarHalfAlt, FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import { ReviewData } from '../data/ReviewData';
 import { casinoData } from '../data/CasinoData';
-import { Helmet } from 'react-helmet-async';
 import SeoHelmet from '../components/seo/SeoHelmet';
 
 const StarRating = ({ rating }) => {
@@ -23,9 +22,10 @@ const StarRating = ({ rating }) => {
 const CasinoDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }, [id]);
 
   const casino = casinoData.find((casino) => casino.id === parseInt(id));
   const otherCasinos = casinoData.filter((c) => c.id !== parseInt(id)).slice(0, 4);
@@ -87,24 +87,23 @@ const CasinoDetails = () => {
     }
   };
 
-  const handlePrevComments = () => {n   
+  const handlePrevComments = () => {
     if (currentCommentIndex > 0) {
       setCurrentCommentIndex(currentCommentIndex - commentsPerPage);
     }
   };
 
-  // Rating display logic for the main casino
   const rating = parseFloat(casino.rating);
   const displayRating = Number.isInteger(rating) ? `${rating}/5` : `${rating.toFixed(1)}/5`;
 
   return (
     <section className="py-16 bg-gray-900 min-h-screen text-gray-300">
-     <SeoHelmet
-  title={`${casino.name} - Casino Review & Ratings`}
-  description={`Full review of ${casino.name} including ratings, bonuses, games, and payment methods. Find the best casino for your needs.`}
-  keywords={["casino", "online gambling", `${casino.name.toLowerCase()}`, "casino review", "bonuses"]}
-  href={`https://www.thecasinopapa/casinos/${id}`}
-/>
+      <SeoHelmet
+        title={`${casino.name} - Casino Review & Ratings`}
+        description={`Full review of ${casino.name} including ratings, bonuses, games, and payment methods. Find the best casino for your needs.`}
+        keywords={["casino", "online gambling", `${casino.name.toLowerCase()}`, "casino review", "bonuses"]}
+        href={`https://www.thecasinopapa/casinos/${id}`}
+      />
       <div className="max-w-6xl mx-auto px-6 py-8">
         <button
           className="inline-flex items-center text-yellow-400 hover:text-yellow-300 mb-8"
@@ -155,10 +154,10 @@ const CasinoDetails = () => {
               </div>
               <p className="text-gray-300 text-lg mb-4">{casino.description}</p>
               <button
-                className="bg-yellow-400 hover:bg-yellow-500 px-4 py-2 rounded-lg font-semibold text-lg text-gray-900 transition-all transform hover:scale-105"
-                aria-label={`Visit ${casino.name}`}
+                className="bg-yellow-400 text-black py-2 px-10 rounded text-center hover:bg-yellow-500"
+                onClick={() => window.open(casino.visitlink, '_blank', 'noopener,noreferrer')}
               >
-                Visit
+                Visit Casino
               </button>
             </div>
           </div>
@@ -401,10 +400,11 @@ const CasinoDetails = () => {
                       <span>({otherDisplayRating})</span>
                     </div>
                     <button
-                      className="w-full bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-gray-900 py-2 rounded-lg font-semibold transition-all transform hover:scale-105"
+                      className="w-full bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-gray-900 py-2 rounded-lg transition-all transform hover:scale-105"
                       onClick={(e) => {
                         e.stopPropagation();
-                        navigate("/");
+                        navigate(`/casino/${otherCasino.id}`);
+                        setTimeout(() => window.scrollTo({ top: 0, behavior: 'instant' }), 0);
                       }}
                     >
                       Play Now

@@ -5,7 +5,8 @@
     badge: "Licensed & Secure",
     bonus: "₹50,000",
     bonusDesc: "Welcome Bonus",
-    paymentMethods: [
+    visitlink:"https://indi.1xbet.com/",
+   paymentMethods: [
       { icon: "💳", name: "Credit/Debit Cards", depositTime: "Instant", withdrawalTime: "3-5 days" },
       { icon: "📱", name: "E-wallets", depositTime: "Instant", withdrawalTime: "24 hours" },
       { icon: "🏦", name: "Bank Transfer", depositTime: "1-3 days", withdrawalTime: "3-7 days" },
@@ -65,10 +66,7 @@
     ],
     verdict: {
       text: "Royal Casino is a solid choice for players seeking variety and reliability. While some limitations exist, the extensive game library and professional service make it worth considering.",
-      comments: [
-        { userName: "Amit Sharma", rating: 4.8, comment: "Amazing variety of games and fast payouts. The welcome bonus was a great start!" },
-        { userName: "Priya Patel", rating: 4.5, comment: "Really secure platform, but I wish they had more no-deposit bonuses." },
-      ],
+     
     },
   },
   {
@@ -77,6 +75,7 @@
     badge: "Malta Licensed",
     bonus: "₹75,000",
     bonusDesc: "+ 200 Free Spins",
+    visitlink:"https://megapari.com/en",
     paymentMethods: [
       { icon: "💳", name: "Credit/Debit Cards", depositTime: "Instant", withdrawalTime: "3-5 days" },
       { icon: "📱", name: "E-wallets", depositTime: "Instant", withdrawalTime: "24 hours" },
@@ -136,10 +135,7 @@
     ],
     verdict: {
       text: "Diamond Palace offers exciting bonuses and modern features, ideal for players looking for fresh gaming experiences, though it’s still building its reputation.",
-      comments: [
-        { userName: "Rahul Verma", rating: 4.7, comment: "Loved the free spins and crypto support. A bit new, but very promising!" },
-        { userName: "Sneha Gupta", rating: 4.2, comment: "Great bonuses, but the payment methods could be expanded." },
-      ],
+      
     },
   },
   {
@@ -147,6 +143,7 @@
     name: "Lucky Strike",
     badge: "UK Licensed",
     bonus: "₹40,000",
+     visitlink:"  https://dripcasino121.com/en",
     bonusDesc: "No Deposit Bonus",
     paymentMethods: [
       { icon: "💳", name: "Credit/Debit Cards", depositTime: "Instant", withdrawalTime: "3-5 days" },
@@ -206,10 +203,7 @@
     ],
     verdict: {
       text: "Lucky Strike is a reliable choice with a strong no-deposit bonus, though its game library could be more diverse.",
-      comments: [
-        { userName: "Vikram Singh", rating: 4.0, comment: "The no-deposit bonus was a nice touch, but the game selection is limited." },
-        { userName: "Anjali Desai", rating: 4.3, comment: "Reliable and mobile-friendly. Customer support was quick to respond." },
-      ],
+     
     },
   },
   {
@@ -218,6 +212,7 @@
     badge: "Curacao Licensed",
     bonus: "₹60,000",
     bonusDesc: "First Deposit Bonus",
+     visitlink:"  https://dripcasino121.com/en",
     paymentMethods: [
       { icon: "💳", name: "Credit/Debit Cards", depositTime: "Instant", withdrawalTime: "3-5 days" },
       { icon: "📱", name: "E-wallets", depositTime: "Instant", withdrawalTime: "24 hours" },
@@ -276,10 +271,7 @@
     ],
     verdict: {
       text: "Golden Bet provides a vibrant gaming experience with fast withdrawals, but its live game offerings could improve.",
-      comments: [
-        { userName: "Karan Malhotra", rating: 4.5, comment: "Fast withdrawals and a solid first deposit bonus. Great for crypto users." },
-        { userName: "Neha Kapoor", rating: 4.0, comment: "Enjoyed the games, but the live game options could be better." },
-      ],
+      
     },
   },
 ];

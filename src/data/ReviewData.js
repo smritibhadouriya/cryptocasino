@@ -13,6 +13,25 @@ export const ReviewData= [
         "userName": "Priya Patel",
         "rating": 5.0,
         "comment": "Really secure platform, but I wish they had more no-deposit bonuses."
+      },
+      {
+        "userName": "Karan Malhotra",
+        "rating": 4.5,
+        "comment": "Fast withdrawals and a solid first deposit bonus. Great for crypto users."
+      },
+      {
+        "userName": "Neha Kapoor",
+        "rating": 4.0,
+        "comment": "Enjoyed the games, but the live game options could be better."
+      }, {
+        "userName": "Rahul Verma",
+        "rating": 4,
+        "comment": "Loved the free spins and crypto support. A bit new, but very promising!"
+      },
+      {
+        "userName": "Sneha Gupta",
+        "rating": 4.5,
+        "comment": "Great bonuses, but the payment methods could be expanded."
       }
     ]
   },

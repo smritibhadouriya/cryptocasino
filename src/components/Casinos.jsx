@@ -49,7 +49,7 @@ const Casinos = ({ casinos = casinoData }) => {
                       onClick={() => handleKnowMore(casino.id)}
                       className="btn-primary w-full bg-yellow-400 text-gray-900 px-4 py-2 rounded hover:bg-yellow-500 transition font-semibold"
                     >
-                      Know More
+                      Casino Detail
                     </button>
                   </div>
                 </div>
