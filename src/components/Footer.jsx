@@ -50,7 +50,7 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
-            <div className="text-2xl font-bold text-yellow-400 mb-4">🎰 Casino Guru</div>
+            <div className="text-2xl font-bold text-yellow-400 mb-4"> CasinoPapa</div>
             <p className="text-gray-200">Your trusted guide to the best online casinos. Play responsibly.</p>
           </div>
           <div>
@@ -89,7 +89,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="border-t border-gray-600 mt-8 pt-8 text-center text-gray-200">
-          <p>&copy; 2025 Casino Guru. All rights reserved. Gamble responsibly. 18+</p>
+          <p>&copy; 2025 CasinoPapa. All rights reserved. Gamble responsibly. 18+</p>
         </div>
       </div>
     </footer>
